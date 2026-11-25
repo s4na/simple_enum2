@@ -5,14 +5,18 @@ SimpleEnum
 [![CI](https://github.com/s4na/simple_enum2/actions/workflows/ci.yml/badge.svg)](https://github.com/s4na/simple_enum2/actions/workflows/ci.yml)
 
 Unobtrusive enum-like fields for ActiveRecord and Ruby, brings enums functionality
-to ActiveRecord and Mongoid models (built for Rails 4+).
+to ActiveRecord and Mongoid models.
 
 Since version 2.0, simple_enum is no longer compatible with Rails 3.x or Ruby 1.8,
 use version 1.6 instead: https://github.com/s4na/simple_enum2/tree/legacy-1.x
 
-CI runs the Active Record and standalone Ruby specs on the latest Ruby 4.0
-patch release with Active Record 7.2 and 8.1. See the [CI matrix](.github/workflows/ci.yml)
-for the older combinations. The CI matrix does not verify Mongoid on Ruby 4.0.
+The current development branch requires **Ruby 3.0 or later**. Ruby 2.7 and
+older are no longer supported by this branch; keep using a previously released
+version if you cannot upgrade Ruby.
+
+The [CI matrix](.github/workflows/ci.yml) tests standalone Ruby and Active Record
+6.1, 7.2 and 8.1 across the listed Ruby versions, including Ruby 4.0 with Active
+Record 7.2 and 8.1. The CI matrix does not verify Mongoid.
 
 *Note*: a recent search on github for `enum` turned out, that there are many,
 many similar solutions. In fact starting with Rails 4.1, there's `ActiveRecord::Enum`
