@@ -10,6 +10,10 @@ to ActiveRecord and Mongoid models (built for Rails 4+).
 Since version 2.0, simple_enum is no longer compatible with Rails 3.x or Ruby 1.8,
 use version 1.6 instead: https://github.com/s4na/simple_enum2/tree/legacy-1.x
 
+CI runs the Active Record and standalone Ruby specs on the latest Ruby 4.0
+patch release with Active Record 7.2 and 8.1. See the [CI matrix](.github/workflows/ci.yml)
+for the older combinations. The CI matrix does not verify Mongoid on Ruby 4.0.
+
 *Note*: a recent search on github for `enum` turned out, that there are many,
 many similar solutions. In fact starting with Rails 4.1, there's `ActiveRecord::Enum`
 which provides **some** of the functionality, but is IMHO pretty limited and too

@@ -34,6 +34,8 @@ jobs:
             gemfile: gemfiles/rails-7.2.gemfile
           - ruby: '3.4'
             gemfile: gemfiles/rails-7.2.gemfile
+          - ruby: '4.0'
+            gemfile: gemfiles/rails-7.2.gemfile
           - ruby: '3.2'
             gemfile: gemfiles/rails-8.1.gemfile
           - ruby: '3.3'
