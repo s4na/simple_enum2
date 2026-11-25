@@ -1,0 +1,35 @@
+name: Generate candidate zizmor lockfile
+on:
+  push:
+    branches: [ci/zizmor-lock-generation]
+permissions:
+  contents: read
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Download and verify official lock generator
+        run: |
+          set -euo pipefail
+          target="$RUNNER_TEMP/gh-actions-lock"
+          curl --proto '=https' -fsSL -o "$target" https://github.com/github/gh-actions-lock/releases/download/v0.5.1/linux-amd64
+          echo "94009f287cfcc046ff371824824c203a8a44c981ca2dac344052744897c29c3a  $target" | sha256sum --check --strict
+          chmod +x "$target"
+      - name: Generate candidate lockfile
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          fixture=$(mktemp -d)
+          mkdir -p "$fixture/.github/workflows"
+          cp .github/workflows/{ci.yml,zizmor.yml,actions.lock} "$fixture/.github/workflows/"
+          cd "$fixture"
+          git init -q
+          "$RUNNER_TEMP/gh-actions-lock" --no-interactive
+          "$RUNNER_TEMP/gh-actions-lock" --verify-local
+          echo '---BEGIN ACTIONS LOCK---'
+          cat .github/workflows/actions.lock
+          echo '---END ACTIONS LOCK---'
